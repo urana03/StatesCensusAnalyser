@@ -11,7 +11,7 @@ import junit.framework.Assert;
 
 public class CensusAnalyserTest {
 
-	public final String STATECENSUS_CSVFILE = "C:\\\\Users\\\\LENOVO\\\\Desktop\\\\censusdata.csv";
+	public final String STATECENSUS_CSVFILE = "C:\\\\Users\\\\LENOVO\\\\Desktop\\\\census.csv";
     public final String WRONG_FILE = "/wrong.txt";
 
     @Test
@@ -33,6 +33,15 @@ public class CensusAnalyserTest {
         } catch (CensusAnalyserException e) {
             e.printStackTrace();
             Assert.assertEquals(CensusAnalyserException.CensusExceptionType.NO_SUCH_FILE, e.type);
+        }
+    }
+    @Test
+    public void GivenTheStateCensusCsvFile_WhenCorrect_ButFileExtensionIncorrect_ShouldThrowCensusAnalyserException() throws IOException {
+        try {
+            int count = CensusAnalyser.loadIndiaCensusData(STATECENSUS_CSVFILE);
+        } catch (CensusAnalyserException e) {
+            e.printStackTrace();
+            Assert.assertEquals(CensusAnalyserException.CensusExceptionType.INCORRECT_DATA_ISSUE, e.type);
         }
     }
 	
