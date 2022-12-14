@@ -1,8 +1,10 @@
 package com.bridgelabz.censusanalyser;
 
+import java.util.Comparator;
+
 import com.opencsv.bean.CsvBindByName;
 
-public class IndiaCensusCsv {
+public class IndiaCensusCsv implements Comparable<IndiaCensusCsv> {
 
     @CsvBindByName(column = "State")
     private String stateName;
@@ -60,4 +62,16 @@ public class IndiaCensusCsv {
                 ", densityPerSqKm='" + densityPerSqKm + '\''
                 +"\n";
     }
+    @Override
+    public int compareTo(IndiaCensusCsv indiaCensusCsv) {
+        return this.stateName.compareTo(indiaCensusCsv.stateName);
+    }
+
+    static class StateCensusComparator implements Comparator<IndiaCensusCsv> {
+        public int compare(IndiaCensusCsv obj1, IndiaCensusCsv obj2) {
+            return obj1.getStateName().compareTo(obj2.getStateName());
+        }
+    }
+
+	
 }
