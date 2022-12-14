@@ -44,6 +44,16 @@ public class CensusAnalyserTest {
             Assert.assertEquals(CensusAnalyserException.CensusExceptionType.INCORRECT_DATA_ISSUE, e.type);
         }
     }
+    @Test
+    public void GivenTheStateCensusCSVFile_WhenCorrect_ButDelimiterIncorrect_ReturnsCensusAnalyserException() throws IOException {
+        try {
+            int count = CensusAnalyser.loadIndiaCensusData(STATECENSUS_CSVFILE);
+        } catch (CensusAnalyserException e) {
+            e.printStackTrace();
+            Assert.assertEquals(CensusAnalyserException.CensusExceptionType.DELIMITER_ISSUE, e.type);
+
+        }
+    }
 	
 }
 
