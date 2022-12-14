@@ -54,7 +54,15 @@ public class CensusAnalyserTest {
 
         }
     }
-	
+    @Test
+    public void whenCorrectCensusCSVFile_ButHeaderIncorrect_ShouldReturnFalse() throws IOException {
+        try {
+            int count = CensusAnalyser.loadIndiaCensusData(STATECENSUS_CSVFILE);
+        } catch (CensusAnalyserException e) {
+            e.printStackTrace();
+            Assert.assertEquals(CensusAnalyserException.CensusExceptionType.INCORRECT_DATA_ISSUE, e.type);
+        }
+    }
 }
 
 
