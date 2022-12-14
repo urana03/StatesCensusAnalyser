@@ -25,6 +25,16 @@ public class CensusAnalyserTest {
             e.printStackTrace();
         }
     }
+    
+    @Test
+    public void GivenTheStateCensusCsvFile_IfDoesntExist_ShouldThrowCensusAnalyserException() throws IOException {
+        try {
+            int count = CensusAnalyser.loadIndiaCensusData(WRONG_FILE);
+        } catch (CensusAnalyserException e) {
+            e.printStackTrace();
+            Assert.assertEquals(CensusAnalyserException.CensusExceptionType.NO_SUCH_FILE, e.type);
+        }
+    }
 	
 }
 
